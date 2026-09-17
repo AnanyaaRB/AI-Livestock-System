@@ -3,6 +3,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 
 from screens.home import HomeScreen
 from screens.login import LoginScreen
+from screens.dashboard import DashboardScreen
 
 
 class LivestockApp(App):
@@ -12,15 +13,20 @@ class LivestockApp(App):
         # Create screen manager
         screen_manager = ScreenManager()
 
-        # Create Home screen
+        # Home screen
         home_screen = Screen(name="home")
         home_screen.add_widget(HomeScreen())
         screen_manager.add_widget(home_screen)
 
-        # Create Login screen
+        # Login screen
         login_screen = Screen(name="login")
         login_screen.add_widget(LoginScreen())
         screen_manager.add_widget(login_screen)
+
+        # Dashboard screen
+        dashboard_screen = Screen(name="dashboard")
+        dashboard_screen.add_widget(DashboardScreen())
+        screen_manager.add_widget(dashboard_screen)
 
         return screen_manager
 

@@ -69,6 +69,10 @@ class LoginScreen(BoxLayout):
             size_hint=(1, None),
             height=55
         )
+
+        # Connect Login button to Dashboard
+        login_button.bind(on_press=self.open_dashboard)
+
         self.add_widget(login_button)
 
         # Register option
@@ -82,3 +86,11 @@ class LoginScreen(BoxLayout):
 
         # Bottom spacing
         self.add_widget(Widget())
+
+    def open_dashboard(self, instance):
+
+        # Get the ScreenManager
+        screen_manager = self.parent.parent
+
+        # Move to Dashboard
+        screen_manager.current = "dashboard"
