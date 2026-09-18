@@ -70,27 +70,31 @@ class LoginScreen(BoxLayout):
             height=55
         )
 
-        # Connect Login button to Dashboard
         login_button.bind(on_press=self.open_dashboard)
 
         self.add_widget(login_button)
 
-        # Register option
-        register_label = Label(
-            text="Don't have an account? Register",
+        # Register button
+        register_button = Button(
+            text="Don't have an account? REGISTER",
             font_size="14sp",
             size_hint=(1, None),
-            height=40
+            height=45
         )
-        self.add_widget(register_label)
+
+        register_button.bind(on_press=self.open_register)
+
+        self.add_widget(register_button)
 
         # Bottom spacing
         self.add_widget(Widget())
 
     def open_dashboard(self, instance):
 
-        # Get the ScreenManager
         screen_manager = self.parent.parent
-
-        # Move to Dashboard
         screen_manager.current = "dashboard"
+
+    def open_register(self, instance):
+
+        screen_manager = self.parent.parent
+        screen_manager.current = "register"
