@@ -1,9 +1,22 @@
-from sympy import symbols, solve
+import json
+import os
 
-x = symbols('x')
+BASE_DIR = os.path.dirname(__file__)
 
-equation = x - 25
+with open(
+    os.path.join(BASE_DIR, "nutrition_data.json"),
+    "r",
+    encoding="utf-8"
+) as f:
+    nutrition_db = json.load(f)
 
-result = solve(equation)
 
-print("Required fodder:", result[0], "kg")
+def get_nutrition(animal):
+    animal = animal.lower()
+
+    if animal in nutrition_db:
+        return nutrition_db[animal]
+
+    return {
+        "message": "Animal not found"
+    }

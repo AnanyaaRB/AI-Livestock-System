@@ -1,22 +1,25 @@
 {
-  "cow": {
-    "water": "40-60 litres/day",
-    "fodder": "20-25 kg/day"
-  },
-  "goat": {
-    "water": "4-10 litres/day",
-    "fodder": "2-5 kg/day"
-  },
-  "sheep": {
-    "water": "4-8 litres/day",
-    "fodder": "2-4 kg/day"
-  },
-  "buffalo": {
-    "water": "50-70 litres/day",
-    "fodder": "25-30 kg/day"
-  },
-  "pig": {
-    "water": "8-15 litres/day",
-    "feed": "2-4 kg/day"
-  }
+    "cow": {
+        "feed": "Green grass, hay, silage",
+        "water": "50 litres/day",
+        "supplements": "Mineral mixture"
+    },
+
+    "goat": {
+        "feed": "Leaves, grass, legumes",
+        "water": "10 litres/day",
+        "supplements": "Salt blocks"
+    },
+
+    "sheep": {
+        "feed": "Pasture grass",
+        "water": "8 litres/day",
+        "supplements": "Minerals"
+    },
+
+    "buffalo": {
+        "feed": "Green fodder, silage",
+        "water": "60 litres/day",
+        "supplements": "Calcium supplements"
+    }
 }
