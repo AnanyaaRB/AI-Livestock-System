@@ -61,6 +61,9 @@ class DashboardScreen(BoxLayout):
             size_hint=(1, None),
             height=55
         )
+
+        upload_button.bind(on_press=self.open_upload)
+
         self.add_widget(upload_button)
 
         # History button
@@ -81,5 +84,7 @@ class DashboardScreen(BoxLayout):
         )
         self.add_widget(about_button)
 
-        # Bottom spacing
-        self.add_widget(Widget())
+    def open_upload(self, instance):
+
+        screen_manager = self.parent.parent
+        screen_manager.current = "upload"
