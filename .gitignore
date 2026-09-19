@@ -11,3 +11,6 @@ kivyenv/
 uploads/
 
 *.log
+backend/model/
+*.keras
+*.h5
