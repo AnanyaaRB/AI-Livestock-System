@@ -7,6 +7,11 @@ from screens.register import RegisterScreen
 from screens.dashboard import DashboardScreen
 from screens.upload import UploadScreen
 from screens.result import ResultScreen
+from screens.breed import BreedSelectionScreen
+from screens.nutrition import NutritionScreen
+from screens.nutrition_result import NutritionResultScreen
+from screens.history import HistoryScreen
+from screens.about import AboutScreen
 
 
 class LivestockApp(App):
@@ -45,6 +50,51 @@ class LivestockApp(App):
         result_screen = Screen(name="result")
         result_screen.add_widget(ResultScreen())
         screen_manager.add_widget(result_screen)
+
+        # Breed selection screen
+        breed_screen = Screen(name="breed")
+        breed_screen.add_widget(
+            BreedSelectionScreen()
+        )
+        screen_manager.add_widget(breed_screen)
+
+        # Nutrition screen
+        nutrition_screen = Screen(name="nutrition")
+        nutrition_screen.add_widget(
+            NutritionScreen()
+        )
+        screen_manager.add_widget(nutrition_screen)
+
+        # Nutrition result screen
+        nutrition_result_screen = Screen(
+            name="nutrition_result"
+        )
+
+        nutrition_result_screen.add_widget(
+            NutritionResultScreen()
+        )
+
+        screen_manager.add_widget(
+            nutrition_result_screen
+        )
+
+        # History screen
+        history_screen = Screen(name="history")
+        history_screen.add_widget(
+            HistoryScreen()
+        )
+        screen_manager.add_widget(
+            history_screen
+        )
+
+        # About screen
+        about_screen = Screen(name="about")
+        about_screen.add_widget(
+            AboutScreen()
+        )
+        screen_manager.add_widget(
+            about_screen
+        )
 
         return screen_manager
 
