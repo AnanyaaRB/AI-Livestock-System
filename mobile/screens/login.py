@@ -69,32 +69,16 @@ class LoginScreen(BoxLayout):
             size_hint=(1, None),
             height=55
         )
-
-        login_button.bind(on_press=self.open_dashboard)
-
         self.add_widget(login_button)
 
-        # Register button
-        register_button = Button(
-            text="Don't have an account? REGISTER",
+        # Register option
+        register_label = Label(
+            text="Don't have an account? Register",
             font_size="14sp",
             size_hint=(1, None),
-            height=45
+            height=40
         )
-
-        register_button.bind(on_press=self.open_register)
-
-        self.add_widget(register_button)
+        self.add_widget(register_label)
 
         # Bottom spacing
         self.add_widget(Widget())
-
-    def open_dashboard(self, instance):
-
-        screen_manager = self.parent.parent
-        screen_manager.current = "dashboard"
-
-    def open_register(self, instance):
-
-        screen_manager = self.parent.parent
-        screen_manager.current = "register"

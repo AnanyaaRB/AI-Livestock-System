@@ -2,3 +2,12 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+venv/
+kivyenv/
+
+.vscode/
+
+uploads/
+
+*.log
