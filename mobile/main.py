@@ -6,6 +6,7 @@ from screens.login import LoginScreen
 from screens.register import RegisterScreen
 from screens.dashboard import DashboardScreen
 from screens.upload import UploadScreen
+from screens.result import ResultScreen
 
 
 class LivestockApp(App):
@@ -39,6 +40,11 @@ class LivestockApp(App):
         upload_screen = Screen(name="upload")
         upload_screen.add_widget(UploadScreen())
         screen_manager.add_widget(upload_screen)
+
+        # Result screen
+        result_screen = Screen(name="result")
+        result_screen.add_widget(ResultScreen())
+        screen_manager.add_widget(result_screen)
 
         return screen_manager
 

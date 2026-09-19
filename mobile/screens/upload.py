@@ -4,7 +4,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.image import Image
-from kivy.core.window import Window
+
+from plyer import filechooser
 
 
 class UploadScreen(BoxLayout):
@@ -44,7 +45,7 @@ class UploadScreen(BoxLayout):
         )
         self.add_widget(self.preview)
 
-        # Choose Image button
+        # Choose image button
         choose_button = Button(
             text="CHOOSE IMAGE",
             font_size="18sp",
@@ -52,7 +53,10 @@ class UploadScreen(BoxLayout):
             height=55
         )
 
-        choose_button.bind(on_press=self.choose_image)
+        choose_button.bind(
+            on_press=self.choose_image
+        )
+
         self.add_widget(choose_button)
 
         # Continue button
@@ -63,7 +67,10 @@ class UploadScreen(BoxLayout):
             height=55
         )
 
-        continue_button.bind(on_press=self.process_image)
+        continue_button.bind(
+            on_press=self.process_image
+        )
+
         self.add_widget(continue_button)
 
         # Status
@@ -73,58 +80,59 @@ class UploadScreen(BoxLayout):
             size_hint=(1, None),
             height=40
         )
+
         self.add_widget(self.status_label)
 
     def choose_image(self, instance):
 
-        # Open the operating system file picker
-        Window.request_keyboard(
-            self.keyboard_closed,
-            self,
-            'text'
+        # Open operating system file picker
+        filechooser.open_file(
+            on_selection=self.image_selected,
+            filters=[
+                "*.png",
+                "*.jpg",
+                "*.jpeg"
+            ]
         )
-
-        try:
-            from plyer import filechooser
-
-            filechooser.open_file(
-                on_selection=self.image_selected,
-                filters=["*.png", "*.jpg", "*.jpeg"]
-            )
-
-        except ImportError:
-
-            self.status_label.text = (
-                "File chooser library is not installed"
-            )
-
-    def keyboard_closed(self):
-        pass
 
     def image_selected(self, selection):
 
         if not selection:
-            self.status_label.text = "No image selected"
+
+            self.status_label.text = (
+                "No image selected"
+            )
+
             return
 
+        # Get selected image path
         image_path = selection[0]
 
+        # Check file
         if not os.path.isfile(image_path):
-            self.status_label.text = "Invalid image file"
+
+            self.status_label.text = (
+                "Invalid image file"
+            )
+
             return
 
+        # Store selected image
         self.selected_image = image_path
 
-        # Display selected image
+        # Display preview
         self.preview.source = image_path
         self.preview.reload()
 
-        self.status_label.text = "Image selected successfully"
+        self.status_label.text = (
+            "Image selected successfully"
+        )
 
         print("Selected image:", image_path)
 
     def process_image(self, instance):
 
+        # Check whether image is selected
         if not self.selected_image:
 
             self.status_label.text = (
@@ -136,6 +144,16 @@ class UploadScreen(BoxLayout):
         print("Image ready for AI analysis:")
         print(self.selected_image)
 
-        self.status_label.text = (
-            "Image ready for AI analysis"
+        # Get ScreenManager
+        screen_manager = self.parent.parent
+
+        # Get ResultScreen
+        result_screen = screen_manager.get_screen("result")
+
+        # Send selected image to ResultScreen
+        result_screen.children[0].set_image(
+            self.selected_image
         )
+
+        # Open Result screen
+        screen_manager.current = "result"
