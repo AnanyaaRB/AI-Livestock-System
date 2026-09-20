@@ -11,6 +11,7 @@ from models.prediction_model import (
 
 from config import UPLOAD_FOLDER
 
+
 def predict_animal():
 
     image = request.files["image"]
