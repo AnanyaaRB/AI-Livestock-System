@@ -1,17 +1,20 @@
 import cv2
 import numpy as np
 
-IMG_SIZE = 224
+def preprocess_image(path):
 
-def preprocess_image(image_path):
-    image = cv2.imread(image_path)
+    image = cv2.imread(path)
 
-    if image is None:
-        raise ValueError("Image not found")
+    image = cv2.resize(
+        image,
+        (224,224)
+    )
 
-    image = cv2.resize(image, (IMG_SIZE, IMG_SIZE))
     image = image / 255.0
 
-    image = np.expand_dims(image, axis=0)
+    image = np.expand_dims(
+        image,
+        axis=0
+    )
 
     return image

@@ -1,7 +1,8 @@
-from ai.animal_classifier import classify_animal
+from ai.preprocess import preprocess_image
+from ai.animal_classifier import classify
 
-def predict(image_path):
+def predict(path):
 
-    result = classify_animal(image_path)
+    image = preprocess_image(path)
 
-    return result
+    return classify(image)

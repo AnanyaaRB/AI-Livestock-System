@@ -1,18 +1,24 @@
-import random
+from tensorflow.keras.models import load_model
+from config import MODEL_PATH
 
-ANIMALS = [
-    "Cow",
+model = load_model(MODEL_PATH)
+
+classes = [
     "Buffalo",
+    "Cow",
     "Goat",
     "Sheep"
 ]
 
-def classify_animal(image_path):
-    prediction = random.choice(ANIMALS)
+def classify(image):
 
-    confidence = round(random.uniform(85, 99), 2)
+    prediction = model.predict(image)
+
+    idx = prediction.argmax()
 
     return {
-        "animal": prediction,
-        "confidence": confidence
+        "animal": classes[idx],
+        "confidence": float(
+            prediction[0][idx] * 100
+        )
     }
